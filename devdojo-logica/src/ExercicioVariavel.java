@@ -1,16 +1,31 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ExercicioVariavel {
     public static void main(String[] args) {
-        double salario = 5500.00;
+        Scanner entrada = new Scanner(System.in);
 
-        double salarioComCinco = (salario * 0.05) + salario;
-        double salarioComQuinze = (salario * 0.15) + salario;
-        double salarioComTrinta = (salario * 0.30) + salario;
+        // Criando o objeto Decimalformat
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+
+        System.out.println("Digite o valor do salário: ");
+        double salario = entrada.nextDouble();
+        System.out.println("Digite o valor da porcentagem: ");
+        double porcentagem = entrada.nextDouble();
+
+        double valorPorcentagem = salario * (porcentagem / 100);
+        double salarioAumento = salario + valorPorcentagem;
+        double salarioDesconto = salario - valorPorcentagem;
 
 
-        System.out.println("O salário fixo é: " + salario);
-        System.out.println("Com aumento de 5%. O novo salário vai para: " + salarioComCinco);
-        System.out.println("Com aumento de 15%. O novo salário vai para: " + salarioComQuinze );
-        System.out.println("Com aumento de 30%. O novo salário vai para: " + salarioComTrinta);
+        System.out.println("\nO salário fixo é: " + nf.format(salario));
+        System.out.println("Valor da porcentagem: " + nf.format(valorPorcentagem));
+        System.out.println("Salário com aumento de " + porcentagem + "%:  " + nf.format(salarioAumento));
+        System.out.println("Salário com desconto de " + porcentagem + "%: " + nf.format(salarioDesconto));
+
+        entrada.close();
 
     }
 }
